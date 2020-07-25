@@ -17,8 +17,18 @@ def fatorate(number):
         #pede o próximo primo se o número não está completamente dividido
         if p == plist[-1] and number != 1:
             primo.nextprime(plist)
-loop = 'y'
-while loop == 'y':
-    number =int(input('Number to fatorate '))
+while True:
+    while True:
+        try:
+            number =int(input('Number to fatorate: '))
+            break
+        except ValueError:
+            print('Try again')
     fatorate(number)
-    loop = input('Fatorate again?(y/n)')
+    try:
+        loop = input('Fatorate again?(y/n)')
+        if loop in ('y','yes','s','sim'): continue
+        elif loop in ('n','no','nao','não',''): break
+        else: raise NameError('Input Inesperado')
+    except NameError:
+        print('Tente Novamente')
